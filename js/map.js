@@ -9,7 +9,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // API GBIF sin restricciones geográficas
 const gbifURL =
   'https://api.gbif.org/v1/occurrence/search' +
-  '?publisherKey=29ef4f00-20db-41f8-b1ad-b5fd3c557c38';
+  '?publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38';
 
 // Cargar ocurrencias
 fetch(gbifURL)
