@@ -1,0 +1,25 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #003049;
+  color: white;
+  padding: 1em;
+}
+
+nav a {
+  color: white;
+  margin-right: 1em;
+  text-decoration: none;
+}
+
+#map {
+  height: 80vh;
+}
+
+article {
+  border-bottom: 1px solid #ccc;
+  padding: 1em 0;
+}
