@@ -1,17 +1,15 @@
-// Crear mapa centrado en Antártica
-const map = L.map('map').setView([-75, 0], 3);
+// Crear mapa Leaflet
+const map = L.map('map').setView([0, 0], 2);
 
 // Capa base OSM
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// API GBIF – solo ocurrencias del instituto
+// API GBIF sin restricciones geográficas
 const gbifURL =
   'https://api.gbif.org/v1/occurrence/search' +
-  '?publisherKey=29ef4f00-20db-41f8-b1ad-b5fd3c557c38' +
-  '&decimalLatitude=-90,-60' +
-  '&limit=300';
+  '?publisherKey=29ef4f00-20db-41f8-b1ad-b5fd3c557c38';
 
 // Cargar ocurrencias
 fetch(gbifURL)
@@ -19,22 +17,19 @@ fetch(gbifURL)
   .then(data => {
     data.results.forEach(o => {
       if (o.decimalLatitude && o.decimalLongitude) {
-
         L.circleMarker(
           [o.decimalLatitude, o.decimalLongitude],
           {
-            radius: 4,
+            radius: 5,
             color: '#003049',
             fillOpacity: 0.7
           }
-        )
-        .bindPopup(`
+        ).bindPopup(`
           <strong>${o.scientificName || 'Sin nombre científico'}</strong><br>
-          ${o.locality || 'Sin localidad'}<br>
+          ${o.locality || ''}<br>
           ${o.eventDate || ''}
-        `)
-        .addTo(map);
+        `).addTo(map);
       }
     });
   })
-  .catch(err => console.error('Error GBIF:', err));
+  .catch(error => console.error('Error con GBIF API:', error));
