@@ -8,8 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // API GBIF sin restricciones geográficas
 const gbifURL =
-  'https://api.gbif.org/v1/occurrence/search' +
-  '?publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38';
+  'https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?srs=EPSG:3031&bin=hex&hexPerTile=97&publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38&style=iNaturalist.poly;
 
 // Cargar ocurrencias
 fetch(gbifURL)
