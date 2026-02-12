@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mapa Polar Instituto</title>
+  <title>Mapa Polar Instituto – GBIF</title>
 
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -11,15 +11,17 @@
   <script src="https://unpkg.com/proj4@2.9.0/dist/proj4.js"></script>
   <script src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
 
-  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    html, body { margin:0; height:100%; }
+    #map { height:100vh; }
+  </style>
 </head>
 
 <body>
 
-<h2>Ocurrencias del Instituto – Proyección Polar</h2>
 <div id="map"></div>
 
-<script src="js/map.js"></script>
+<script src="map.js"></script>
 
 </body>
 </html>
