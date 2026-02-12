@@ -1,4 +1,4 @@
-// Definir CRS polar antártico
+// Definir CRS polar
 const southPolarCRS = new L.Proj.CRS(
   "EPSG:3031",
   "+proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=0 " +
@@ -6,8 +6,8 @@ const southPolarCRS = new L.Proj.CRS(
   {
     origin: [-4194304, 4194304],
     resolutions: [
-      16384, 8192, 4096, 2048, 1024,
-      512, 256, 128, 64, 32, 16, 8, 4
+      8192, 4096, 2048, 1024, 512,
+      256, 128, 64, 32, 16, 8, 4
     ]
   }
 );
@@ -16,13 +16,18 @@ const southPolarCRS = new L.Proj.CRS(
 const map = L.map("map", {
   crs: southPolarCRS,
   center: [-75, 0],
-  zoom: 2
+  zoom: 2,
+  minZoom: 1
 });
 
-// Fondo simple gris (sin tiles incompatibles)
-L.tileLayer('', {
-  attribution: ''
-}).addTo(map);
+// 🧊 Base map polar (EOX Antarctic Mosaic)
+L.tileLayer(
+  "https://tiles.maps.eox.at/wmts/1.0.0/antarctic_4326/default/{z}/{y}/{x}.jpg",
+  {
+    tileSize: 256,
+    attribution: "EOX Antarctic Mosaic"
+  }
+).addTo(map);
 
 // ==============================
 // Cargar ocurrencias GBIF
@@ -52,14 +57,18 @@ async function loadOccurrences() {
     data.results.forEach(o => {
       L.circleMarker(
         [o.decimalLatitude, o.decimalLongitude],
-        { radius: 3 }
+        {
+          radius: 3,
+          color: "#d62828",
+          fillOpacity: 0.7
+        }
       ).addTo(map);
     });
 
     offset += limit;
   }
 
-  console.log("Todos los registros cargados");
+  console.log("Carga completa");
 }
 
 loadOccurrences();
