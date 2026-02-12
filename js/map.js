@@ -1,5 +1,5 @@
 // Definir CRS polar
-const southPolarCRS = new L.Proj.CRS(
+const crs3031 = new L.Proj.CRS(
   "EPSG:3031",
   "+proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=0 " +
   "+k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs",
@@ -14,63 +14,35 @@ const southPolarCRS = new L.Proj.CRS(
 
 // Crear mapa
 const map = L.map("map", {
-  crs: southPolarCRS,
+  crs: crs3031,
   center: [-75, 0],
-  zoom: 2,
-  minZoom: 1
+  zoom: 2
 });
 
-// 🧊 Base map polar (EOX Antarctic Mosaic)
+// =============================
+// 1️⃣ Base OMT Polar de GBIF
+// =============================
 L.tileLayer(
-  "https://tiles.maps.eox.at/wmts/1.0.0/antarctic_4326/default/{z}/{y}/{x}.jpg",
+  "https://tile.gbif.org/3031/omt/{z}/{x}/{y}@2x.png?style=gbif-middle",
   {
     tileSize: 256,
-    attribution: "EOX Antarctic Mosaic"
+    attribution: "© GBIF"
   }
 ).addTo(map);
 
-// ==============================
-// Cargar ocurrencias GBIF
-// ==============================
-
-const publisherKey = "29ef4f00-20db-41f8-b1ad-b5fd3c557c38";
-const limit = 300;
-let offset = 0;
-let total = 1;
-
-async function loadOccurrences() {
-
-  while (offset < total) {
-
-    const url =
-      `https://api.gbif.org/v1/occurrence/search` +
-      `?publisherKey=${publisherKey}` +
-      `&hasCoordinate=true` +
-      `&limit=${limit}` +
-      `&offset=${offset}`;
-
-    const res = await fetch(url);
-    const data = await res.json();
-
-    total = data.count;
-
-    data.results.forEach(o => {
-      L.circleMarker(
-        [o.decimalLatitude, o.decimalLongitude],
-        {
-          radius: 3,
-          color: "#d62828",
-          fillOpacity: 0.7
-        }
-      ).addTo(map);
-    });
-
-    offset += limit;
+// =============================
+// 2️⃣ Densidad del instituto
+// =============================
+L.tileLayer(
+  "https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png" +
+  "?srs=EPSG:3031" +
+  "&bin=hex" +
+  "&hexPerTile=86" +
+  "&publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38" +
+  "&style=classic.poly",
+  {
+    tileSize: 256,
+    opacity: 0.8,
+    attribution: "GBIF occurrence density"
   }
-
-  console.log("Carga completa");
-}
-
-loadOccurrences();
-
-
+).addTo(map);
