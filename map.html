@@ -2,29 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ocurrencias GBIF – Instituto</title>
+  <title>Mapa Polar Instituto</title>
 
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/proj4@2.9.0/dist/proj4.js"></script>
+  <script src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-<header>
-  <h1>Ocurrencias GBIF – Antártica</h1>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="datasets.html">Datasets</a>
-    <a href="map.html">Mapa</a>
-  </nav>
-</header>
 
+<h2>Ocurrencias del Instituto – Proyección Polar</h2>
 <div id="map"></div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/map.js"></script>
+
 </body>
 </html>
