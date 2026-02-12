@@ -1,3 +1,5 @@
+console.log("Leaflet:", L);
+console.log("Proj4Leaflet:", L.Proj);
 // Definir CRS polar
 const crs3031 = new L.Proj.CRS(
   "EPSG:3031",
