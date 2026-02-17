@@ -28,7 +28,9 @@ header h1 {
 }
 
 #map {
-    width: 100%;
-    height: 100vh;
-    background-color: #aad3df; /* Color oceánico */
+  background-color: black;
+}
+
+.leaflet-container {
+  background: black;
 }
