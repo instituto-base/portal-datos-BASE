@@ -1,25 +1,20 @@
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBIF Antarctic Map - SCAR/Antarctic Data</title>
-    
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <title>Mapa Ocurrencias Instituto</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/proj4/dist/proj4.js"></script>
+  <script src="https://unpkg.com/proj4leaflet"></script>
 </head>
+
 <body>
-    <header>
-        <h1>Buscador de Ocurrencias - Antártida</h1>
-        <div id="stats">Cargando datos...</div>
-    </header>
+  <div id="map"></div>
 
-    <div id="map"></div>
-
-    <!-- Scripts: Leaflet, Proj4, Proj4Leaflet -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.1/proj4leaflet.min.js"></script>
-    <script src="js/map.js"></script>
+  <script src="js/map.js"></script>
 </body>
 </html>
+
