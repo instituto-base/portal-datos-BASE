@@ -1,34 +1,25 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mapa Polar Instituto – GBIF</title>
-
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-  <style>
-    html, body { margin:0; height:100%; }
-    #map { height:100vh; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBIF Antarctic Map - SCAR/Antarctic Data</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <header>
+        <h1>Buscador de Ocurrencias - Antártida</h1>
+        <div id="stats">Cargando datos...</div>
+    </header>
 
-<div id="map"></div>
+    <div id="map"></div>
 
-<!-- 1️⃣ Leaflet -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<!-- 2️⃣ Proj4 -->
-<script src="https://unpkg.com/proj4@2.9.0/dist/proj4.js"></script>
-
-<!-- 3️⃣ Proj4Leaflet -->
-<script src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
-
-<!-- 4️⃣ Tu script -->
-<script src="map.js"></script>
-
+    <!-- Scripts: Leaflet, Proj4, Proj4Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.11.0/proj4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.1/proj4leaflet.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
