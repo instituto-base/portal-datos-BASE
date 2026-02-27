@@ -32,16 +32,17 @@ var map = L.map('map', {
 
 // ====== CAPA BASE ======
 L.tileLayer(
-  'https://tile.gbif.org/3031/omt/{z}/{x}/{y}@1x.png?style=gbif-classic',
+  'https://tile.gbif.org/3031/omt/{z}/{x}/{y}@' + pixel_ratio + 'x.png?style=gbif-classic',
   {
-    attribution: '&copy; GBIF'
+    tileSize: 512,
+    noWrap: true
   }
 ).addTo(map);
 
 
 // ====== CAPA DENSIDAD ======
 L.tileLayer(
-  'https://tile.gbif.org/3031/omt/{z}/{x}/{y}@1x.png?srs=EPSG:3031&bin=hex&hexPerTile=97&publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38&style=iNaturalist.poly',
+  'https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@' + pixel_ratio + 'x.png?srs=EPSG:3031&bin=hex&hexPerTile=97&publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38&style=iNaturalist.poly',
   {
     tileSize: 512,
     opacity: 0.8,
