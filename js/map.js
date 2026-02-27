@@ -2,47 +2,138 @@ var pixel_ratio = parseInt(window.devicePixelRatio) || 1;
 
 var max_zoom = 16;
 var tile_size = 512;
+var extent = 12367396.2185;
 
-var extent = 12367396.2185; // To the Equator
-var resolutions = Array(max_zoom + 1).fill().map((_, i) => ( extent / tile_size / Math.pow(2, i-1) ));
+var resolutions = Array(max_zoom + 1)
+  .fill()
+  .map((_, i) => (extent / tile_size / Math.pow(2, i - 1)));
 
 var crs = new L.Proj.CRS(
-	'EPSG:3031',
-	"+proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs",
-	{
-		origin: [-extent, extent],
-		projectedBounds: L.bounds(L.point(-extent, extent), L.point(extent, -extent)),
-		resolutions: resolutions
-	}
+  'EPSG:3031',
+  "+proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs",
+  {
+    origin: [-extent, extent],
+    projectedBounds: L.bounds(
+      L.point(-extent, extent),
+      L.point(extent, -extent)
+    ),
+    resolutions: resolutions
+  }
 );
 
 var map = L.map('map', {
-    crs: crs,
-    minZoom: 1,      // 👈 evita zoom demasiado lejano
-    maxZoom: 8,      // ajusta si necesitas más detalle
-    maxBoundsViscosity: 1.0
-}).setView([-90, 166.666667], 2);  // 👈 usa entero, 1.5 puede causar requests raros
+  crs: crs,
+  minZoom: 1,   // clave para evitar error 400
+  maxZoom: 16,
+  zoomSnap: 1,
+  zoomDelta: 1
+}).setView([-82, 0], 1);
 
 
-// 🔹 Fondo base GBIF
+// ====== CAPA BASE ======
 L.tileLayer(
-  'https://tile.gbif.org/3031/omt/{z}/{x}/{y}@{r}x.png?style=gbif-classic'
-    .replace('{r}', pixel_ratio),
+  'https://tile.gbif.org/3031/omt/{z}/{x}/{y}@' + pixel_ratio + 'x.png?style=gbif-classic',
   {
     tileSize: 512,
-    noWrap: true,          // 👈 MUY IMPORTANTE en proyecciones polares
-    errorTileUrl: ''       // 👈 evita mostrar imagen de error
+    noWrap: true
   }
 ).addTo(map);
 
 
-// 🔹 Capa de densidad
+// ====== CAPA DENSIDAD ======
 L.tileLayer(
-  'https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?srs=EPSG:3031&bin=hex&hexPerTile=97&publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38&style=iNaturalist.poly',
+  'https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@' + pixel_ratio + 'x.png?srs=EPSG:3031&bin=hex&hexPerTile=97&publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38&style=iNaturalist.poly',
   {
     tileSize: 512,
     opacity: 0.8,
-    noWrap: true,
-    errorTileUrl: ''
+    noWrap: true
   }
 ).addTo(map);
+
+setTimeout(function() {
+  map.invalidateSize();
+}, 200);
+
+// ============================
+// ESTADÍSTICAS GBIF
+// ============================
+
+const publishingOrg = "29ef4f00-20db-41f8-b1ad-b5fd3c557c38";
+
+async function getTotalOccurrences() {
+  const url = `https://api.gbif.org/v1/occurrence/search?publishingOrg=${publishingOrg}&limit=0`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data.count;
+}
+
+function getTaxonomicGroups(data) {
+  if (!data.facets || data.facets.length === 0) return {};
+
+  const counts = data.facets[0].counts;
+
+  const kingdoms = {
+    "1": "Animalia",
+    "5": "Fungi",
+    "6": "Plantae",
+    "2": "Bacteria",
+    "3": "Archaea",
+    "4": "Chromista",
+    "7": "Protozoa",
+    "8": "Viruses"
+  };
+
+  const result = {};
+
+  counts.forEach(item => {
+    const kingdomName = kingdoms[item.name];
+    if (kingdomName) {
+      result[kingdomName] = item.count;
+    }
+  });
+
+  return result;
+}
+
+async function loadStats() {
+const url = `https://api.gbif.org/v1/occurrence/search?publishingOrg=${publishingOrg}&limit=0&facet=KINGDOM_KEY`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  // TOTAL
+  document.getElementById("total").textContent =
+    data.count.toLocaleString();
+
+  // GRUPOS
+  const groups = getTaxonomicGroups(data);
+
+  if (Object.keys(groups).length === 0) {
+    console.log("No hay grupos taxonómicos");
+    return;
+  }
+
+  const labels = Object.keys(groups);
+  const counts = Object.values(groups);
+
+  new Chart(document.getElementById("taxaChart"), {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: counts
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+}
+
+loadStats();
