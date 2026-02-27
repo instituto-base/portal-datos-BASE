@@ -41,7 +41,7 @@ L.tileLayer(
 
 // ====== CAPA DENSIDAD ======
 L.tileLayer(
-  'https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@' + pixel_ratio + 'x.png?srs=EPSG:3031&bin=hex&hexPerTile=97&publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38&style=iNaturalist.poly',
+  'https://tile.gbif.org/3857/omt/{z}/{x}/{y}@1x.png?srs=EPSG:3031&bin=hex&hexPerTile=97&publishingOrg=29ef4f00-20db-41f8-b1ad-b5fd3c557c38&style=iNaturalist.poly',
   {
     tileSize: 512,
     opacity: 0.8,
