@@ -1,6 +1,60 @@
-<p class="codepen" data-height="300" data-pen-title="Mapa Densidad" data-default-tab="result" data-slug-hash="KwMLrjV" data-user="instituto-base" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/instituto-base/pen/KwMLrjV">
-  Mapa Densidad</a> by Instituto Milenio BASE (<a href="https://codepen.io/instituto-base">@instituto-base</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://public.codepenassets.com/embed/index.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registros Biológicos</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="map-box">
+      <div id="map"></div>
+    </div>
+
+    <div class="panel">
+      <h1>Portal BASE</h1>
+      <h3>Mapa Registros Biológicos BASE</h3>
+
+      <div class="stat-block">
+        <h2>Total de registros</h2>
+        <div id="total">Cargando...</div>
+      </div>
+
+      <div class="stat-block">
+        <h2>Registros por Reino</h2>
+        <canvas id="taxaChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Proyecciones necesarias para EPSG:3031 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
+  <script src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
+
+  <!-- MarkerCluster -->
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Tu script principal -->
+  <script src="js/map.js" defer></script>
+
+</body>
+</html>
