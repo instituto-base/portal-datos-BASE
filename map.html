@@ -1,19 +1,51 @@
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <title>Mapa Ocurrencias Instituto</title>
+  <meta charset="UTF-8">
+  <title>Mapa Densidad</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/proj4/dist/proj4.js"></script>
-  <script src="https://unpkg.com/proj4leaflet"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-  <div id="map"></div>
 
-  <script src="js/map.js"></script>
+  <div class="container">
+
+    <div class="map-box">
+      <div id="map"></div>
+    </div>
+
+    <div class="panel">
+      <h1>Portal BASE</h1>
+      <h3>Mapa de densidad Antártica</h3>
+
+      <div class="stat-block">
+        <h2>Total de registros</h2>
+        <div id="total">Cargando...</div>
+      </div>
+
+      <div class="stat-block">
+        <h2>Registros por Reino</h2>
+        <canvas id="taxaChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/proj4@2.9.0/dist/proj4.js"></script>
+  <script src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- TU SCRIPT (mapa + estadísticas juntos) -->
+  <script src="./map.js"></script>
+
 </body>
 </html>
