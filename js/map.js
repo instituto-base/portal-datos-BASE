@@ -32,10 +32,9 @@ var map = L.map('map', {
 
 // ====== CAPA BASE ======
 L.tileLayer(
-  'https://tile.gbif.org/3031/omt/{z}/{x}/{y}@' + pixel_ratio + 'x.png?style=gbif-classic',
+  'https://tile.gbif.org/3857/omt/{z}/{x}/{y}@1x.png?style=gbif-classic',
   {
-    tileSize: 512,
-    noWrap: true
+    attribution: '&copy; GBIF'
   }
 ).addTo(map);
 
