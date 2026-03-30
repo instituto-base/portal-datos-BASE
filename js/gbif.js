@@ -5,6 +5,9 @@ fetch(
   .then(data => {
     const div = document.getElementById('gbif-datasets');
 
+    // ❗ Borra "Cargando..."
+    div.innerHTML = "";
+
     data.results.forEach(d => {
       div.innerHTML += `
         <article>
@@ -16,4 +19,9 @@ fetch(
         </article>
       `;
     });
+  })
+  .catch(error => {
+    const div = document.getElementById('gbif-datasets');
+    div.innerHTML = "Error cargando datasets";
+    console.error(error);
   });
