@@ -1,26 +1,66 @@
-<!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Instituto – Datos Abiertos</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Mapa Densidad</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
+  <!-- 🔝 Header institucional -->
+  <header class="header">
+    <div class="header-content">
+      <h2>Portal de Datos Instituto Milenio BASE</h2>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="map.html">Explorar Registros GBIF</a>
+      </nav>
+    </div>
+  </header>
 <body>
-<header>
-  <h1>Datos Abiertos del Instituto</h1>
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="datasets.html">Datasets</a>
-    <a href="map.html">Mapa</a>
-  </nav>
-</header>
-
 <main>
   <p>
+    El Instituto Milenio Biodiversidad de Ecosistemas Antárticos y Subantárticos (BASE) investiga el pasado, presente y futuro de la biodiversidad antártica y subantártica: el destino de una biota única, en un mundo cambiante que ha sido afectado dramáticamente por el cambio climático. A su vez, busca que el conocimiento generado por el equipo de investigadores que constituyen BASE, sea utilizado en la toma de decisiones de políticas públicas.
+    </p>
+  </p>
     Esta plataforma compila y visualiza los datasets publicados por el instituto
-    en <strong>GBIF</strong> y <strong>Zenodo</strong>, con foco en la Antártica.
+    en <strong>GBIF</strong> y <strong>Zenodo</strong>, en el contexto del cumplimiento de la publicación de datos asociados a la investigación bajo los principios FAIR.
   </p>
 </main>
+  <div class="container">
+
+    <div class="map-box">
+      <div id="map"></div>
+    </div>
+
+    <div class="panel">
+    
+
+      <div class="stat-block">
+        <h2>Total de registros GBIF</h2>
+        <div id="total">Cargando...</div>
+      </div>
+
+      <div class="stat-block">
+        <h2>Registros por Reino</h2>
+        <canvas id="taxaChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/proj4@2.9.0/dist/proj4.js"></script>
+  <script src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- TU SCRIPT (mapa + estadísticas juntos) -->
+  <script src="js/map.js"></script>
+
 </body>
 </html>
