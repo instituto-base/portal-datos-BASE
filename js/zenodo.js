@@ -3,6 +3,9 @@ fetch('https://zenodo.org/api/records/?communities=institutobase')
   .then(data => {
     const div = document.getElementById('zenodo-datasets');
 
+    // ❗ ESTA ES LA LÍNEA CLAVE (borra "Cargando...")
+    div.innerHTML = "";
+
     data.hits.hits.forEach(d => {
       div.innerHTML += `
         <article>
@@ -12,4 +15,9 @@ fetch('https://zenodo.org/api/records/?communities=institutobase')
         </article>
       `;
     });
+  })
+  .catch(error => {
+    const div = document.getElementById('zenodo-datasets');
+    div.innerHTML = "Error cargando datasets";
+    console.error(error);
   });
