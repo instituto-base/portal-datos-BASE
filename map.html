@@ -1,58 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registros Biológicos</title>
+  <title>Explorador Registros GBIF</title>
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
-  <!-- Tu CSS -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <!-- MarkerCluster -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"/>
+
+  <style>
+    body { margin: 0; font-family: Arial; }
+    #map { height: 100vh; }
+
+    /* 🔍 Buscador compacto */
+    #buscador-container {
+      position: absolute;
+      top: 10px;
+      left: 50px;
+      z-index: 1000;
+      background: white;
+      padding: 8px;
+      border-radius: 8px;
+      width: 260px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .search-box {
+      display: flex;
+    }
+
+    #buscador {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+      outline: none;
+    }
+
+    #btnBuscar {
+      width: 40px;
+      border: none;
+      background: #2c7be5;
+      color: white;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+
+    #btnBuscar:hover {
+      background: #1a5fd1;
+    }
+
+    #sugerencias {
+      background: white;
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      margin-top: 5px;
+    }
+
+    .item-sugerencia {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .item-sugerencia:hover {
+      background: #f0f0f0;
+    }
+
+    #estado {
+      margin-top: 5px;
+      font-size: 12px;
+    }
+  </style>
 </head>
-
+ <!-- 🔝 Header institucional -->
+  <header class="header">
+    <div class="header-content">
+      <h2>Portal de Datos Instituto Milenio BASE</h2>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="map.html">Mapa</a>
+      </nav>
+    </div>
+  </header>
 <body>
 
-  <div class="container">
-
-    <div class="map-box">
-      <div id="map"></div>
+  <!-- 🔍 Buscador -->
+  <div id="buscador-container">
+    <div class="search-box">
+      <input type="text" id="buscador" placeholder="Buscar taxón..." />
+      <button id="btnBuscar">🔍</button>
     </div>
 
-    <div class="panel">
-      <h1>Portal BASE</h1>
-      <h3>Mapa Registros Biológicos BASE</h3>
-
-      <div class="stat-block">
-        <h2>Total de registros</h2>
-        <div id="total">Cargando...</div>
-      </div>
-
-      <div class="stat-block">
-        <h2>Registros por Reino</h2>
-        <canvas id="taxaChart"></canvas>
-      </div>
-    </div>
-
+    <div id="sugerencias"></div>
+    <div id="estado"></div>
   </div>
 
-  <!-- Leaflet JS -->
+  <!-- 🗺️ Mapa -->
+  <div id="map"></div>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
-
-<script src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
-
-<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- Tu script principal -->
-  <script src="js/map.js"></script>
+  <!-- Tu JS -->
+  <script src="js/explorar_GBIF.js"></script>
 
 </body>
 </html>
