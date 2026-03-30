@@ -18,15 +18,34 @@
   </div>
 </header>
 
-<section>
-  <h2>Zenodo</h2>
-  <div id="zenodo-datasets"></div>
-</section>
+<!-- 👇 usamos tu container existente -->
+<div class="container">
 
-<section>
-  <h2>GBIF</h2>
-  <div id="gbif-datasets"></div>
-</section>
+  <!-- 🟣 Zenodo -->
+  <section class="panel" style="text-align: justify;">
+    <h2>Zenodo</h2>
+    <div id="zenodo-datasets">Cargando datasets...</div>
+
+    <p style="margin-top: 20px;">
+      <a href="https://zenodo.org/communities/institutobase/" target="_blank">
+        Ver comunidad completa en Zenodo →
+      </a>
+    </p>
+  </section>
+
+  <!-- 🟢 GBIF -->
+  <section class="panel" style="text-align: justify;">
+    <h2>GBIF</h2>
+    <div id="gbif-datasets">Cargando datasets...</div>
+
+    <p style="margin-top: 20px;">
+      <a href="https://www.gbif.org/publisher/29ef4f00-20db-41f8-b1ad-b5fd3c557c38" target="_blank">
+        Ver datasets del publicador en GBIF →
+      </a>
+    </p>
+  </section>
+
+</div>
 
 <script src="js/zenodo.js"></script>
 <script src="js/gbif.js"></script>
