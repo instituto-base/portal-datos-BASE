@@ -121,3 +121,60 @@ html, body {
     height: 500px;
   }
 }
+/* ===== FOOTER ===== */
+.footer {
+  background: #0b0f14;
+  color: white;
+  margin-top: 60px;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: auto;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Logo */
+.footer-logo img {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+}
+
+/* Links */
+.footer-links h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #2a7de1;
+}
+
+/* Línea inferior */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
