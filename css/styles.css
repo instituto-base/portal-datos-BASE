@@ -22,9 +22,24 @@ html, body {
   align-items: center;
 }
 
-.header h2 {
+/* Logo + título */
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Logo */
+.logo {
+  height: 35px;
+  width: auto;
+}
+
+/* Ajuste del título */
+.logo-title h2 {
   margin: 0;
   font-weight: 600;
+  font-size: 1.3rem;
 }
 
 .header nav a {
