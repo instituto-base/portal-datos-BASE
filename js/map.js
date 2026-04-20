@@ -46,7 +46,8 @@ L.tileLayer(
   {
     tileSize: 512,
     opacity: 0.8,
-    noWrap: true
+    noWrap: true,
+    attribution: '&copy; <a href="https://www.gbif.org">GBIF</a>
   }
 ).addTo(map);
 
