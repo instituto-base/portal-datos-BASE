@@ -178,3 +178,11 @@ html, body {
   font-size: 0.9rem;
   color: #aaa;
 }
+/* margenes*/
+.intro-text {
+  margin-right:50px ; 
+   margin-left: 60px;
+     /* centra y separa */
+  text-align: justify;
+  line-height: 1.6;
+}
