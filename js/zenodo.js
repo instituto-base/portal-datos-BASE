@@ -3,7 +3,6 @@ fetch('https://zenodo.org/api/records/?communities=institutobase')
   .then(data => {
     const div = document.getElementById('zenodo-datasets');
 
-    // ❗ ESTA ES LA LÍNEA CLAVE (borra "Cargando...")
     div.innerHTML = "";
 
     data.hits.hits.forEach(d => {
