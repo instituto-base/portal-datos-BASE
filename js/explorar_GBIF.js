@@ -4,7 +4,7 @@
 const map = L.map('map').setView([-60, -50], 3);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors'
+  attribution:' <a href="https://www.openstreetmap.org/">OpenStreetMap</a> |  <a href="https://www.gbif.org/">GBIF</a>'
 }).addTo(map);
 
 // =======================
@@ -72,7 +72,9 @@ function crearMarker(r, color="#ff7800") {
   ).bindPopup(`
     <strong>${r.scientificName || "Sin nombre"}</strong><br>
     ${r.family || ""}<br>
-    ${r.locality || ""}
+    ${r.locality || ""}<br>
+  <a href="https://www.gbif.org/occurrence/${r.key}" target="_blank" > Ver en GBIF 🡥
+  </a>
   `);
 }
 
@@ -191,4 +193,25 @@ document.getElementById("buscador").addEventListener("input", (e) => {
       });
 
   }, 300);
+});
+//Limpiar busqueda
+document.getElementById("btnLimpiar").addEventListener("click", () => {
+
+  // limpiar input
+  document.getElementById("buscador").value = "";
+
+  // limpiar estado
+  estado.innerHTML = "";
+
+  // limpiar sugerencias
+  sugerenciasDiv.innerHTML = "";
+
+  // resetear mapa
+  markers.clearLayers();
+
+  const todos = todosLosDatos
+    .filter(r => r.decimalLatitude && r.decimalLongitude)
+    .map(r => crearMarker(r));
+
+  markers.addLayers(todos);
 });
