@@ -10,7 +10,7 @@ fetch('https://zenodo.org/api/records/?communities=institutobase')
         <article>
           <h3>${d.metadata.title}</h3>
           <p>${d.metadata.description || ''}</p>
-          <a href="${d.links.html}" target="_blank">Ver en Zenodo</a>
+          <a href="https://doi.org/${d.metadata.doi}" target="_blank">Ver en Zenodo</a>
         </article>
       `;
     });
