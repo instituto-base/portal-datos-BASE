@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<link rel="icon" type="image/png" href="assets/portal_datos_64px.png">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo de Datasets</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/catalog.css">
+</head>
+<body data-i18n-page-title="page_title_datasets">
+<header class="header">
+  <div class="header-content">
+    <div class="logo-title">
+      <img src="assets/logo.png" alt="Logo BASE" class="logo">
+      <h2 data-i18n="site_title">Portal de Datos Instituto Milenio BASE</h2>
+    </div>
+      <nav>
+        <a href="index.html" data-i18n="nav_inicio">Inicio</a>
+        <a href="datasets.html" data-i18n="nav_datasets">Datasets</a>
+        <a href="map.html" data-i18n="nav_mapa">Explorar Registros GBIF</a>
+        <div class="lang-toggle">
+          <button type="button" data-lang="es">ES</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<h1 style="text-align:center; margin: 20px 0 0;" data-i18n="catalog_title">Catálogo de Datasets</h1>
+
+<div class="catalog-layout">
+
+  <!-- Filtros -->
+  <aside class="catalog-sidebar">
+    <h4 data-i18n="catalog_filter_orden">Ordenar por</h4>
+    <select id="catalog-sort">
+      <option value="date-desc" data-i18n="catalog_orden_fecha_desc">Más recientes primero</option>
+      <option value="date-asc" data-i18n="catalog_orden_fecha_asc">Más antiguos primero</option>
+      <option value="title-asc" data-i18n="catalog_orden_titulo">Título (A-Z)</option>
+    </select>
+
+    <h4 data-i18n="catalog_filter_categoria">Categoría</h4>
+    <div id="filter-categorias"></div>
+
+    <h4 data-i18n="catalog_filter_fuente">Fuente</h4>
+    <div id="filter-fuentes"></div>
+  </aside>
+
+  <!-- Resultados -->
+  <main>
+    <input type="text" id="catalog-search" data-i18n-placeholder="catalog_search_placeholder" placeholder="Buscar por título o descripción...">
+
+    <p class="catalog-results-header">
+      <span id="catalog-result-count">0</span> <span data-i18n="catalog_resultados">datasets encontrados</span>
+    </p>
+
+    <div id="catalog-results">
+      <p data-i18n="catalog_cargando">Cargando catálogo de datasets...</p>
+    </div>
+
+    <div id="catalog-pagination"></div>
+  </main>
+
+</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/dataset-catalog.js"></script>
+</body>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="assets/base_anid_logo.png" alt="Instituto BASE">
+    </div>
+    <div class="footer-links">
+      <h4 data-i18n="footer_enlaces">Enlaces de interés</h4>
+      <ul>
+        <li><a href="https://www.gbif.org" target="_blank" data-i18n="footer_gbif">GBIF</a></li>
+        <li><a href="https://zenodo.org" target="_blank" data-i18n="footer_zenodo">Zenodo</a></li>
+        <li><a href="https://www.institutobase.cl" target="_blank" data-i18n="footer_instituto">Instituto BASE</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-i18n="footer_copyright">© 2026 Instituto Milenio BASE</p>
+  </div>
+</footer>
+</html>
