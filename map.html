@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<link rel="icon" type="image/png" href="assets/portal_datos_64px.png">
+<head>
+<meta charset="UTF-8">
+<title>Explorador Registros GBIF</title>
+<!-- CSS GLOBAL -->
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/explorer.css">
+<link rel="stylesheet" href="css/lang-toggle.css">
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<!-- MarkerCluster -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"/>
+<!-- SOLO estilos del mapa -->
+<style>
+#map {
+  height: 78vh;
+  margin: 10 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+#buscador-container {
+position: absolute;
+top: 110px;
+left: 80px;
+z-index: 1000;
+background: white;
+padding: 8px;
+border-radius: 8px;
+width: 260px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+<body data-i18n-page-title="page_title_map">
+<!-- HEADER UNIFICADO -->
+<header class="header">
+<div class="header-content">
+<div class="logo-title">
+<img src="assets/logo.png" alt="Logo BASE" class="logo">
+<h2 data-i18n="site_title">Portal de Datos Instituto Milenio BASE</h2>
+</div>
+<div class="header-right">
+<div class="lang-toggle">
+  <select id="lang-select">
+    <option value="es">Español / Spanish</option>
+    <option value="en">English / Inglés</option>
+  </select>
+</div>
+<nav>
+<a href="index.html" data-i18n="nav_inicio">Inicio</a>
+<a href="datasets.html" data-i18n="nav_datasets">Datasets</a>
+<a href="map.html" data-i18n="nav_mapa">Explorar Registros GBIF</a>
+</nav>
+</div>
+</div>
+</header>
+
+<!-- BUSCADOR -->
+<div id="buscador-container">
+<div class="search-box">
+<input type="text" id="buscador" placeholder="Buscar taxón..." data-i18n-placeholder="buscador_placeholder" />
+<button id="btnBuscar">🔍</button>
+<button id="btnLimpiar" data-i18n="btn_limpiar">Limpiar</button>
+</div>
+<div id="sugerencias"></div>
+<div id="estado"></div>
+<div id="progreso-carga"></div>
+</div>
+
+<!-- MAPA -->
+<div id="map"></div>
+
+<!-- SOBRE EL EXPLORADOR -->
+<section class="info-explorador">
+<h2 data-i18n="explorer_info_titulo">Sobre el explorador</h2>
+<p data-i18n="explorer_info_texto">
+Este mapa reúne los registros de ocurrencia publicados por el Instituto Milenio BASE, junto con datasets de otras instituciones con las que colaboran nuestros investigadores en el estudio de la biodiversidad antártica y subantártica. A continuación se listan los datasets utilizados, su DOI y la institución que los publicó.
+</p>
+<div id="info-datasets-lista"></div>
+</section>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/explorar_GBIF.js"></script>
+</body>
+<footer class="footer">
+<div class="footer-content">
+<!-- Logo -->
+<div class="footer-logo">
+<img src="assets/base_anid_logo.png" alt="Instituto BASE">
+</div>
+<!-- Links -->
+<div class="footer-links">
+<h4 data-i18n="footer_enlaces">Enlaces de interés</h4>
+<ul>
+<li><a href="https://www.gbif.org" target="_blank" data-i18n="footer_gbif">GBIF</a></li>
+<li><a href="https://zenodo.org" target="_blank" data-i18n="footer_zenodo">Zenodo</a></li>
+<li><a href="https://www.institutobase.cl" target="_blank" data-i18n="footer_instituto">Instituto BASE</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p data-i18n="footer_copyright">© 2026 Instituto Milenio BASE</p>
+</div>
+</footer>
+</html>
