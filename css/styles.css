@@ -1,0 +1,188 @@
+/* 🌿 Base */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f5f7f9;
+  color: #1a1a1a;
+  font-family: 'Inter', sans-serif;
+}
+
+/* 🔝 Header */
+.header {
+  background: white;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: auto;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo + título */
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Logo */
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+/* Ajuste del título */
+.logo-title h2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.header nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 400;
+}
+
+.header nav a:hover {
+  color: #2a7de1;
+}
+
+/* 📦 Layout */
+.container {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+}
+
+/* 🗺️ Mapa */
+.map-box {
+  width: 800px;
+  height: 800px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* 📊 Panel */
+.panel {
+  flex: 1;
+  max-width: 900px;
+  line-height: 1.6;
+}
+
+/* Títulos */
+.panel h1 {
+  margin-top: 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.panel h3 {
+  margin-top: 10px;
+  font-weight: 400;
+  color: #2a7de1;
+}
+
+/* Bloques */
+.stat-block {
+  margin-bottom: 30px;
+}
+
+/* Número destacado */
+#total {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2a7de1;
+}
+
+/* 📱 Responsive */
+@media (max-width: 1200px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .map-box {
+    width: 100%;
+    height: 500px;
+  }
+}
+/* ===== FOOTER ===== */
+.footer {
+  background: #0b0f14;
+  color: white;
+  margin-top: 60px;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: auto;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Logo */
+.footer-logo img {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+}
+
+/* Links */
+.footer-links h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #2a7de1;
+}
+
+/* Línea inferior */
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+/* margenes*/
+.intro-text {
+  margin-right:50px ; 
+   margin-left: 60px;
+     /* centra y separa */
+  text-align: justify;
+  line-height: 1.6;
+}
