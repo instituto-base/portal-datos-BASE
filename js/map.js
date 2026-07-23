@@ -39,7 +39,7 @@ L.tileLayer(
     tileSize: 512,
     opacity: 0.8,
     noWrap: true,
-    attribution: 'GBIF; <a href="https://www.gbif.org">GBIF</a>'
+    attribution: '<a href="https://www.gbif.org">GBIF</a>'
   }
 ).addTo(map);
 setTimeout(function() {

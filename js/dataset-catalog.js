@@ -381,9 +381,33 @@ let activeFilters = {
   sort: "date-desc", // date-desc | date-asc | title-asc
 };
 
-const PAGE_SIZE = 12;
+// El mismo quiebre (800px) que usa .catalog-layout en catalog.css para
+// apilar el sidebar — así la cantidad de tarjetas por página cambia
+// exactamente cuando el diseño pasa a la versión mobile.
+const MOBILE_BREAKPOINT = "(max-width: 800px)";
+function calcularPageSize() {
+  return window.matchMedia(MOBILE_BREAKPOINT).matches ? 6 : 12;
+}
+
+let PAGE_SIZE = calcularPageSize();
 let currentPage = 1;
 let currentFilteredResults = [];
+
+// Si el usuario cambia el tamaño de la ventana (o rota el celular) y eso
+// cruza el quiebre mobile/escritorio, recalcula cuántas tarjetas van por
+// página y vuelve a pintar desde la página 1.
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    const nuevoTamano = calcularPageSize();
+    if (nuevoTamano !== PAGE_SIZE) {
+      PAGE_SIZE = nuevoTamano;
+      currentPage = 1;
+      renderCurrentPage();
+    }
+  }, 200);
+});
 
 function normalizeDateForSort(date) {
   if (!date) return null;
@@ -589,6 +613,17 @@ function buildFilterUI() {
     sortSelect.addEventListener("change", () => {
       activeFilters.sort = sortSelect.value;
       applyFilters();
+    });
+  }
+
+  // Toggle "Filtros" — solo tiene efecto visual en mobile (ver catalog.css);
+  // en escritorio el botón está oculto y los filtros siempre visibles.
+  const filtrosToggle = document.getElementById("filtros-toggle");
+  const filtrosBody = document.getElementById("filtros-body");
+  if (filtrosToggle && filtrosBody) {
+    filtrosToggle.addEventListener("click", () => {
+      filtrosToggle.classList.toggle("abierto");
+      filtrosBody.classList.toggle("abierto");
     });
   }
 }

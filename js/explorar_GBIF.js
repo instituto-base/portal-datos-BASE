@@ -25,7 +25,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // =======================
-// 🔥 CLUSTER estilo GBIF (sin números)
+// 🔥 CLUSTER estilo GBIF (con número de registros agrupados)
 // =======================
 const markers = L.markerClusterGroup({
   chunkedLoading: true,
@@ -45,13 +45,19 @@ const markers = L.markerClusterGroup({
       size = 50;
       color = "rgba(200,0,0,0.7)";
     }
+    // Tamaño de letra proporcional al círculo, para que el número siempre
+    // quepa cómodo (círculos chicos → texto chico, círculos grandes → más grande).
+    const fontSize = Math.max(10, Math.round(size / 2.6));
     return L.divIcon({
       html: `<div style="
         background: ${color};
         border-radius: 50%;
         width: ${size}px;
         height: ${size}px;
-      "></div>`,
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "><span style="font-size: ${fontSize}px; color: #fff; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">${count}</span></div>`,
       className: 'cluster-custom',
       iconSize: [size, size]
     });
@@ -399,6 +405,13 @@ document.getElementById("btnLimpiar").addEventListener("click", () => {
     .filter(r => r.decimalLatitude && r.decimalLongitude)
     .map(r => crearMarker(r));
   markers.addLayers(todos);
+});
+
+// =======================
+// ⬇️ BOTÓN "BAJAR A SOBRE EL EXPLORADOR" (solo escritorio, ver CSS en map.html)
+// =======================
+document.getElementById("btnBajarInfo")?.addEventListener("click", () => {
+  document.querySelector(".info-explorador")?.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 // =======================
