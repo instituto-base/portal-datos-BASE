@@ -8,8 +8,77 @@
   padding: 24px;
 }
 
+/* Botón "Filtros" (mobile): oculto por defecto en escritorio.
+   IMPORTANTE: esta regla base debe ir ANTES del @media que la muestra en
+   mobile — si va después (como estaba antes), gana siempre por orden de
+   archivo y el botón queda oculto también en mobile, sin importar que el
+   media query aplique bien. */
+.filtros-toggle-btn {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .catalog-layout {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  /* En una sola columna, que el sidebar "flote" con sticky se ve raro
+     (se queda pegado arriba tapando resultados) — mejor que se desplace normal.
+     !important porque la regla base ".catalog-sidebar { position: sticky }"
+     está más abajo en este mismo archivo, y en CSS gana la que aparece
+     después cuando la especificidad es igual — sin el !important, esta
+     regla de mobile perdía silenciosamente contra esa. */
+  .catalog-sidebar {
+    position: static !important;
+  }
+
+  /* Botón para mostrar/ocultar los filtros, solo visible en mobile */
+  .filtros-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .filtros-toggle-btn .chevron {
+    transition: transform 0.2s ease;
+  }
+
+  .filtros-toggle-btn.abierto .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Colapsado por defecto en mobile: el JS solo agrega/quita la clase "abierto" */
+  #filtros-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.25s ease;
+  }
+
+  #filtros-body.abierto {
+    max-height: 1000px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalog-layout {
+    padding: 12px;
+  }
+
+  /* Tarjetas a ancho completo en pantallas muy angostas, para evitar
+     que el mínimo de 280px no quepa y genere scroll horizontal. */
+  #catalog-results {
     grid-template-columns: 1fr;
   }
 }
@@ -59,6 +128,45 @@
   margin-bottom: 6px;
   cursor: pointer;
   color: #444;
+}
+
+/* Checkbox con estilo propio (cuadrado, esquinas redondeadas) — no depende
+   de cómo cada navegador/sistema operativo dibuje el checkbox por defecto,
+   así se ve igual siempre. */
+.filter-checkbox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-checkbox input[type="checkbox"]:hover {
+  border-color: #0b5fff;
+}
+
+.filter-checkbox input[type="checkbox"]:checked {
+  background: #0b5fff;
+  border-color: #0b5fff;
+}
+
+.filter-checkbox input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 /* Resultados */
@@ -223,4 +331,10 @@
 
 .recent-datasets-link a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .recent-datasets-grid {
+    grid-template-columns: 1fr;
+  }
 }
