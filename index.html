@@ -3,20 +3,21 @@
 <link rel="icon" type="image/png" href="assets/portal_datos_64px.png">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inicio - Portal de Datos BASE</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/catalog.css">
-<link rel="stylesheet" href="css/lang-toggle.css"> 
+<link rel="stylesheet" href="css/lang-toggle.css">
 </head>
-<!-- 🔝 Header institucional -->
+<!-- Header institucional -->
 <body data-i18n-page-title="page_title_index">
 <header class="header">
 <div class="header-content">
 <div class="logo-title">
-<img src="assets/logo.png" alt="Logo BASE" class="logo">
+<a href="index.html"><img src="assets/logo.png" alt="Logo BASE" class="logo"></a>
 <h2 data-i18n="site_title">Portal de Datos Instituto Milenio BASE</h2>
 </div>
 <div class="header-right">
@@ -63,6 +64,9 @@ Puedes revisar todas las publicaciones en nuestra página principal <a href="htt
 <div class="stat-block">
 <h2 data-i18n="registros_phylum_title">Ocurrencias por Phylum / División</h2>
 <canvas id="taxaChart"></canvas>
+<p style="margin-top: 16px;">
+<a href="map.html" data-i18n="explorar_todos_registros">Explorar todos los registros biológicos →</a>
+</p>
 </div>
 </div>
 </div>

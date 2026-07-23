@@ -3,6 +3,7 @@
 <link rel="icon" type="image/png" href="assets/portal_datos_64px.png">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Explorador Registros GBIF</title>
 <!-- CSS GLOBAL -->
 <link rel="stylesheet" href="css/styles.css">
@@ -15,17 +16,18 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"/>
 <!-- SOLO estilos del mapa -->
 <style>
-#map {
+#map  {
   height: 78vh;
-  margin: 10 30px;
+  width: calc(100% - 48px); 
+  margin: 0 24px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 #buscador-container {
 position: absolute;
-top: 110px;
-left: 80px;
+top: 100px;
+left: 96px;
 z-index: 1000;
 background: white;
 padding: 8px;
@@ -33,6 +35,81 @@ border-radius: 8px;
 width: 260px;
 box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
+/* Contenedor del mapa: position:relative para poder ubicar el botón de bajar */
+.map-shell {
+  position: relative;
+}
+ 
+/* Botón flotante "bajar a Sobre el explorador" — solo escritorio */
+.scroll-down-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+ 
+.scroll-down-btn:hover {
+  background: #f0f4ff;
+  border-color: #0b5fff;
+}
+ 
+.scroll-down-btn:active {
+  transform: translateX(-50%) scale(0.94);
+}
+
+/* Cluster con número de registros dentro del círculo (ver explorar_GBIF.js) */
+.cluster-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cluster-custom span {
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 700px) {
+  #map {
+    width: calc(100% - 30px);  
+    margin: 0 16px;
+    height: 60vh;
+  }
+  #buscador-container {
+    /* En mobile el header se envuelve a varias filas y crece, así que el
+       top:100px (pensado para el header de escritorio, una sola fila) ya
+       no alcanza y el buscador quedaba tapado/tapando el header.
+       OJO: se probó position:fixed para que no se fuera con el scroll,
+       pero eso hacía que quedara pegado en pantalla todo el tiempo,
+       incluso tapando la sección "Sobre el explorador" más abajo — por
+       eso se volvió a position:absolute (se desplaza normal con la
+       página, solo corregimos DÓNDE aparece al inicio). */
+    position: absolute;
+    top: 190px; /* 👈 ajusta este número si tu header mide distinto en mobile */
+    left: 12px;
+    width: calc(90% - 10px);
+  }
+  /* El botón de bajar ahora también se muestra en mobile: con el header
+     más alto (varias filas) y el buscador flotando sobre el mapa, cuesta
+     más encontrar por dónde hacer scroll para llegar a "Sobre el explorador". */
+}
+
 </style>
 </head>
 <body data-i18n-page-title="page_title_map">
@@ -40,7 +117,7 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 <header class="header">
 <div class="header-content">
 <div class="logo-title">
-<img src="assets/logo.png" alt="Logo BASE" class="logo">
+<a href="index.html"><img src="assets/logo.png" alt="Logo BASE" class="logo"></a>
 <h2 data-i18n="site_title">Portal de Datos Instituto Milenio BASE</h2>
 </div>
 <div class="header-right">
@@ -72,7 +149,10 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 </div>
 
 <!-- MAPA -->
+<div class="map-shell">
 <div id="map"></div>
+<button id="btnBajarInfo" class="scroll-down-btn" data-i18n-title="explorer_bajar_info" title="Ir a &quot;Sobre el explorador&quot;" aria-label="Ir a Sobre el explorador">↓</button>
+</div>
 
 <!-- SOBRE EL EXPLORADOR -->
 <section class="info-explorador">
