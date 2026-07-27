@@ -20,6 +20,10 @@ const PAGE_LIMIT = 300;
 // 🗺️ MAPA
 // =======================
 const map = L.map('map').setView([-60, -50], 3);
+// El control de zoom (+/-) se mueve a la esquina superior derecha para no
+// superponerse con el buscador de taxones, que vive en la esquina superior
+// izquierda del mapa.
+map.zoomControl.setPosition('topright');
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: ' <a href="https://www.openstreetmap.org/">OpenStreetMap</a> |  <a href="https://www.gbif.org/">GBIF</a>'
 }).addTo(map);

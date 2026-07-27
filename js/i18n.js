@@ -211,6 +211,12 @@ function applyTranslations(lang) {
   const titleKey = document.body.getAttribute("data-i18n-page-title");
   if (titleKey && dict[titleKey]) document.title = dict[titleKey];
 
+  // Logo según idioma (usa data-logo-es / data-logo-en en el <img>)
+  document.querySelectorAll("img[data-logo-es]").forEach((img) => {
+    const src = lang === "en" ? img.getAttribute("data-logo-en") : img.getAttribute("data-logo-es");
+    if (src) img.setAttribute("src", src);
+  });
+
   // Atributo lang del documento
   document.documentElement.setAttribute("lang", lang);
 
